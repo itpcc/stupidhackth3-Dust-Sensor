@@ -1,0 +1,108 @@
+@import "../../node_modules/bulma/bulma.sass";
+
+@keyframes spin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
+    }
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  font-family: "Impact", sans-serif;
+  min-height: 100%;
+  margin: 0;
+  overflow: hidden;
+  will-change: background-color, color;
+  background-color: white;
+  color: black;
+  transition: background-color 0.5s, color 0.5s;
+
+}
+
+body, .section-main{
+  height: 100%;
+}
+
+body[data-motor-state="0"], body[data-motor-state="1"]{
+  background-color: #2196f3;
+}
+body[data-motor-state="2"]{
+  background-color: #b388ff;
+  color: white;
+}
+body[data-motor-state="3"]{
+  background-color: #b71c1c;
+  color: white;
+}
+body[data-motor-state="4"]{
+  background-color: #ef9a9a ;
+  color: black;
+}
+
+.section-main{
+  .header-label{
+    margin-top: 1rem;
+    text-align: center;
+    h1{
+      font-size: 2.5rem;
+    }
+  }
+  .hero-body{
+    .main--pm_display{
+      h3{
+        font-size: 5rem;
+      }
+      .pm_display--fan{
+        animation-name: spin;
+        animation-duration: 1s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear; 
+        animation-play-state: paused;
+      }
+      .pm_display--timestamp{
+        font-family: "Arial", sans-serif;
+        font-size: 0.5rem;
+      }
+    }
+  }
+}
+
+body[data-motor-state="3"], body[data-motor-state="4"]{
+  .section-main{
+    .main--pm_display{
+      .pm_display--fan{
+        animation-play-state: running;
+      }
+    }
+  }
+}
+
+
+.footer{
+  margin: 0;
+  padding: 1.5rem;
+  padding-top: 1.5rem;
+  font-family: "Arial", sans-serif;
+  font-size: 0.75rem;
+  color: black;
+
+  @include mobile(){
+    padding: 0;
+    padding-bottom: 0.5rem;
+  }
+
+  .footer__content{
+    margin-top: 0;
+    text-align: left;
+    .footer__content--sosumi{
+      margin: 0;
+      width: 100%;
+    }
+  }
+}
